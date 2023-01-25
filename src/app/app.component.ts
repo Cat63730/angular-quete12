@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NasaService } from './nasa.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-quete12';
+  public imgOfTheDay: string ="";
+
+  constructor(public nasaService: NasaService){}
+
+  ngOnInit(): void{
+    this.nasaService.getImageOfTheDay().subscribe(pictureOfTheDay => {
+      this.imgOfTheDay = pictureOfTheDay.url;
+      });
+  }
+
 }
